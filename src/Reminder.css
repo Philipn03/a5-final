@@ -1,0 +1,20 @@
+.reminder {
+    padding: 20px;
+  }
+  
+  .reminder ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .reminder li {
+    margin: 5px 0;
+    font-size: 1em;
+  }
+  
+  .reminder input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+  }
+  

@@ -1,0 +1,15 @@
+.motivation {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .motivation select {
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .motivation p {
+    font-size: 1.2em;
+    color: #333;
+  }
+  

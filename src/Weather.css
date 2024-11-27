@@ -1,0 +1,14 @@
+.weather {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .weather h2 {
+    margin-bottom: 10px;
+  }
+  
+  .weather p {
+    font-size: 1.2em;
+    color: #555;
+  }
+  

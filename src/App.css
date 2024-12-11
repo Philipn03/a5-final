@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  /* background-color: #52a2f1; */
+  /* background-color: #737dfe; */
+  background: linear-gradient(to right, #737dfe, #ffcac9);
 }
 
 

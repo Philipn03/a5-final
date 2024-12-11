@@ -1,9 +1,25 @@
-.header {
-    text-align: center;
-    background-color: #57e29f;
-    padding: 20px;
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #ff7e5f, 0 0 10px #feb47b, 0 0 20px #ff7e5f;
   }
-  
+  100% {
+    text-shadow: 0 0 20px #feb47b, 0 0 40px #ff7e5f, 0 0 60px #feb47b;
+  }
+}
+
+.header {
+    background: linear-gradient(to right, #ff7e5f, #feb47b);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: bold;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    animation: glow 1.5s infinite alternate;
+  }
+
+
   .header h1 {
     margin: 0;
     font-size: 2em;

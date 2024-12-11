@@ -149,8 +149,8 @@ const MainPage = () => {
       <Header />
       <Motivation />
       <div className="content">
-        <Reminder />
         <Weather />
+        <Reminder />
       </div>
     </div>
   );

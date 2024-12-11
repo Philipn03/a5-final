@@ -1,10 +1,13 @@
-.App {
-  text-align: center;
-  /* background-color: #52a2f1; */
-  /* background-color: #737dfe; */
-  background: linear-gradient(to bottom, #000066, #6699ff);
+html, body {
+  height: 100%; /* Makes sure the body and html take up the full height */
+  margin: 0;    /* Removes default margin */
 }
 
+.App {
+  text-align: center;
+  background: linear-gradient(to bottom, #000066, #6699ff);
+  min-height: 100vh;  /* Ensures the background color covers the full height */
+}
 
 .App-header {
   background-color: #282c34;

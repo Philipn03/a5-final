@@ -1,25 +1,82 @@
 .motivation {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  padding: 20px;
+  transition: background-color 0.5s ease;
+}
+
+.motivation.amazing {
+  background-color: #f3e5f5;
+}
+
+.motivation.anger {
+  background-color: #ffcccb;
+}
+
+.motivation.beauty {
+  background-color: #e3f2fd;
+}
+
+/* Add similar background themes for other moods... */
+
+/* Mood Buttons */
+.mood-buttons {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.mood-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+.mood-button.active {
+  background-color: #ffd700;
+  color: #000;
+  font-weight: bold;
+}
+
+.mood-button:hover {
+  transform: scale(1.1);
+}
+
+/* Quote Container */
+.quote-container {
+  margin-top: 30px;
+  min-height: 50px;
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 600px;
-  min-height: 440px;
-  background-color: rgb(255, 255, 255);
-  text-align: center;
-  margin: 128px auto;
-  border-radius: 10px;
-  padding-bottom: 32px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quote {
+  font-size: 20px;
+  font-style: italic;
+  animation: fadeIn 1s ease;
+}
+
+.loading {
+  font-size: 18px;
+  color: #888;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
   }
-  
-  .motivation select {
-    padding: 10px;
-    margin: 10px 0;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .motivation p {
-    font-size: 1.2em;
-    color: #333;
-  }
-  
+}

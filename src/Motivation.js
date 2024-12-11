@@ -1,51 +1,84 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import $ from 'jquery';
 import './Motivation.css';
 
 const Motivation = () => {
   const [mood, setMood] = useState('');
   const [quote, setQuote] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const fetchQuote = async (selectedMood) => {
-    if (!selectedMood) return; // Check if mood is selected
-    try {
-      const response = await axios.get(`https://api.api-ninjas.com/v1/quotes?category=${selectedMood}`, {
-        headers: {
-          'X-Api-Key': 'kNnVF07uuBGhkL1HgN5IUQ==jysy34CSppsjkXUD'
+  const moods = [
+    { value: 'amazing', label: '✨ Amazing' },
+    { value: 'anger', label: '😡 Anger' },
+    { value: 'beauty', label: '🌸 Beauty' },
+    { value: 'failure', label: '💔 Failure' },
+    { value: 'fear', label: '😱 Fear' },
+    { value: 'funny', label: '😂 Funny' },
+    { value: 'great', label: '🌟 Great' },
+    { value: 'happiness', label: '😊 Happiness' },
+    { value: 'humor', label: '😄 Humor' },
+    { value: 'inspirational', label: '🚀 Inspirational' },
+    { value: 'intelligent', label: '🧠 Intelligent' },
+    { value: 'love', label: '❤️ Love' },
+    { value: 'money', label: '💰 Money' },
+    { value: 'success', label: '🏆 Success' },
+  ];
+
+  const fetchQuote = (selectedMood) => {
+    if (!selectedMood) return;
+
+    setLoading(true);
+    setQuote(''); // Clear previous quote
+    $.ajax({
+      method: 'GET',
+      url: `https://api.api-ninjas.com/v1/quotes?category=${selectedMood}`,
+      headers: {
+        'X-Api-Key': 'kNnVF07uuBGhkL1HgN5IUQ==jysy34CSppsjkXUD',
+      },
+      contentType: 'application/json',
+      success: function (result) {
+        if (result.length > 0) {
+          setQuote(result[0].quote);
+        } else {
+          setQuote('No quote found for this mood.');
         }
-      });
-
-      // Assuming the response is an array, extract the quote from the first element
-      if (response.data.length > 0) {
-        setQuote(response.data[0].quote); // Get the first quote's text
-      } else {
-        setQuote('No quote found for this mood.');
-      }
-    } catch (error) {
-      console.error('Error fetching quote:', error);
-      setQuote('Could not fetch a quote, please try again later.');
-    }
+      },
+      error: function () {
+        setQuote('Could not fetch a quote, please try again later.');
+      },
+      complete: function () {
+        setLoading(false);
+      },
+    });
   };
 
-  const handleMoodChange = (e) => {
-    const selectedMood = e.target.value;
+  const handleMoodClick = (selectedMood) => {
     setMood(selectedMood);
-    fetchQuote(selectedMood); // Fetch quote when mood changes
+    fetchQuote(selectedMood);
   };
 
   return (
-    <div className="motivation">
-      <h2>Select Mood</h2>
-      <select onChange={handleMoodChange} value={mood}>
-        <option value="">Select Mood</option>
-        <option value="happy">happiness</option>
-        <option value="motivated">Motivated</option>
-        <option value="anxious">Anxious</option>
-        <option value="tired">Tired</option>
-      </select>
+    <div className={`motivation ${mood}`}>
+      <h2>How are you feeling today?</h2>
+      <div className="mood-buttons">
+        {moods.map((m) => (
+          <button
+            key={m.value}
+            className={`mood-button ${mood === m.value ? 'active' : ''}`}
+            onClick={() => handleMoodClick(m.value)}
+          >
+            {m.label}
+          </button>
+        ))}
+      </div>
 
-      <h3>Motivational Quote</h3>
-      <p>{quote || 'Select a mood to get your quote!'}</p>
+      <div className="quote-container">
+        {loading ? (
+          <p className="loading">Fetching your quote...</p>
+        ) : (
+          quote && <p className="quote">{quote}</p>
+        )}
+      </div>
     </div>
   );
 };
